@@ -28,7 +28,7 @@
 <meta property="og:description" content="什么是重构？软件设计大师 Martin Fowler 是这样定义重构的：“重构是一种对软件内部结构的改善，目的是在不改变软件的可见行为的情况下，使其更易理解，修改成本更低。” 为什么要重构保证代码质量在日常工作中，随着项目的演进，代码不停的堆砌，如果没有人为代码的质量负责，代码必定是朝着越来越混乱的方向演进的。混乱到一定程度之后，量变引起质变，导致项目bug频发，解决bug耗时且困难。代码可读性差">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-04-30T10:12:57.000Z">
-<meta property="article:modified_time" content="2020-04-30T08:39:25.749Z">
+<meta property="article:modified_time" content="2020-05-03T03:19:51.900Z">
 <meta property="article:author" content="Mon Fan">
 <meta property="article:tag" content="重构">
 <meta property="article:tag" content="设计思想">
@@ -213,10 +213,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-04-30 18:12:57 / 修改时间：16:39:25" itemprop="dateCreated datePublished" datetime="2020-04-30T18:12:57+08:00">2020-04-30</time>
+              <time title="创建时间：2020-04-30 18:12:57" itemprop="dateCreated datePublished" datetime="2020-04-30T18:12:57+08:00">2020-04-30</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-03 11:19:51" itemprop="dateModified" datetime="2020-05-03T11:19:51+08:00">2020-05-03</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -242,21 +248,19 @@
 <h3 id="为什么要重构"><a href="#为什么要重构" class="headerlink" title="为什么要重构"></a>为什么要重构</h3><h4 id="保证代码质量"><a href="#保证代码质量" class="headerlink" title="保证代码质量"></a>保证代码质量</h4><p>在日常工作中，随着项目的演进，代码不停的堆砌，如果没有人为代码的质量负责，代码必定是朝着越来越混乱的方向演进的。混乱到一定程度之后，量变引起质变，导致项目bug频发，解决bug耗时且困难。代码可读性差，想要添加一个新功能时，开发人员需要花更多的时间去思考，去考虑如何把新功能塞进现有的代码库中，避免因改一个地方而出现牵一发而动全身的尴尬境界。</p>
 <h4 id="避免过度设计"><a href="#避免过度设计" class="headerlink" title="避免过度设计"></a>避免过度设计</h4><p>优秀的代码或架构不是一开始就能完全设计好的，就像优秀的公司和产品也都是迭代出来的。我们无法 100% 遇见未来的需求，也没有足够的精力、时间、资源为遥远的未来买单，所以，随着系统的演进，重构代码也是不可避免的。<br>在我们维护代码的过程中，真正遇到问题的时候，再对代码进行重构，能有效避免前期投入太多时间做过度的设计，做到有的放矢。</p>
 <h4 id="提升工程师技术水平"><a href="#提升工程师技术水平" class="headerlink" title="提升工程师技术水平"></a>提升工程师技术水平</h4><p>重构也是对我们学习的经典的设计思想、设计原则、设计模式、编程规范的一种应用，能够锻炼我们熟练使用这些理论知识的能力。可见重构能力也是衡量一个工程师代码能力的有效手段。</p>
-<h3 id="重构有哪些级别"><a href="#重构有哪些级别" class="headerlink" title="重构有哪些级别"></a>重构有哪些级别</h3><h4 id="代码级"><a href="#代码级" class="headerlink" title="代码级"></a>代码级</h4><p>在日常开发过程中，或因公司业务发展迅速，公司为了项目能早点上线压缩开发周期。开发人员在改bug或功能优化时，经常在没有完全理解架构设计的情况下，为了赶进度就使用临时方案，今天张三改一下明天李四改一下，于是代码逐渐失去了自己的结构。久而久之，程序员越来越难通过阅读代码理解原来的设计，于是代码就越愈发腐败得更快，最终沦为一个谁也不敢动的项目。</p>
-<p>另一方面需求在演进，原有的设计模式可能已无法满足现今的业务需求，这时我们也需要通过重构来保证代码的质量。</p>
+<h3 id="重构有哪些级别"><a href="#重构有哪些级别" class="headerlink" title="重构有哪些级别"></a>重构有哪些级别</h3><h4 id="代码级"><a href="#代码级" class="headerlink" title="代码级"></a>代码级</h4><p>在日常开发过程中，或因公司业务发展迅速，公司为了项目能早点上线压缩开发周期。开发人员在改bug或功能优化时，经常在没有完全理解架构设计的情况下，为了赶进度就使用临时方案，今天张三改一下明天李四改一下，于是代码逐渐失去了自己的结构。久而久之，程序员越来越难通过阅读代码理解原来的设计，于是代码就越愈发腐败得更快，最终沦为一个谁也不敢动的巨坑。</p>
+<p>另一方面需求在演进，原有的设计模式可能已无法满足现今的业务需求，这时我们也需要通过重构来调整代码的结构保证代码的可扩展性。</p>
 <p>最后，除了这些外部因素，开发人员本身对设计模式、设计思想的理解与应用场景出现偏差也会使得代码可维护性不高。</p>
 <p>所以，<strong>代码级的重构就是使用设计模式、封装继承、优化拆解代码，使得代码的结构更清晰，维护成本更低，运行效率更高</strong>。</p>
-<h4 id="代码分层架构级"><a href="#代码分层架构级" class="headerlink" title="代码分层架构级"></a>代码分层架构级</h4><p>代码分层架构是利用面向接口编程的设计思想将具有同一职责和特性的类抽象成一组接口，<strong>其目的是隐藏底层的实现方式与复杂性，使得上下层解耦，提高各层实现方案的可替换性和可维护性。</strong></p>
-<p>例如经典的MVC架构，MVC指的Model、View、Controller即模型、视图、控制器。它要实现的目标是将软件<strong>用户界面（V）和业务逻辑（M）分离</strong>以使代码可扩展性、可复用性、可维护性、灵活性加强，它并没有给出Model层即业务逻辑层内部的架构方案。在业务逻辑层不使用任何其他架构方案的情况，我们很容易就写出entity-dao-service这种<code>贫血模式</code>的分层架构代码，贫血模式到本质是面向过程编程。我并不是说面向过程编程不好，事实上在项目初期，由于业务简单，我们可以使用MVC架构简单且快速的实现我们的业务需求。然而随着业务的演进，功能越来越复杂，想要统一维护一个业务对象或一套业务规则变的越发困难。这个时候我们需要一种新的分层理念来指导我们应对这一状况。<code>面向对象编程</code>、<code>充血模型</code>和<code>DDD领域驱动设计</code>等一些编程范式和设计思想的出现就是为了处理复杂的业务场景和逻辑。</p>
-<h4 id="系统架构级"><a href="#系统架构级" class="headerlink" title="系统架构级"></a>系统架构级</h4><p>在项目演进的中后期，系统功能变的丰富，业务逻辑也是越来越复杂。由于项目庞大导致项目的编译时间过长，项目的维护人员过多经常引起Git冲突。又因业务逻辑复杂，导致各模块直接依赖关系混乱耦合度过高，在功能开发过程中常常需要花大量的时间来确定改动对外界依赖的影响。并且在扩展和性能调优上也变动异常困难。</p>
-<p>系统级架构就是为了满足当下的需求<strong>对项目进行横向或纵向的拆分</strong>，例如慢慢的从<code>单体式架构</code>-&gt;<code>分布式架构</code>-&gt;<code>微服务架构</code>。</p>
+<h4 id="系统架构级"><a href="#系统架构级" class="headerlink" title="系统架构级"></a>系统架构级</h4><p>随着项目的演进，系统功能变的丰富，业务逻辑也越来越复杂。开发人员熟悉和掌握整个项目的成本也在不断的增加。我们需要一种架构能帮我们化繁为简，使我们的代码不会因为一点小的改动导致牵一发而动全身。让我们的开发人员可以分组配合甚至单兵作战，每个人或小组只需要熟悉自己负责的那一块就能完成开发工作，而不需要熟悉整个项目从而让新人能够快速参与开发工作。</p>
+<p>所以，系统级架构主要是通过<strong>对项目进行横向或纵向的拆分来降低项目间或模块间的耦合度</strong>，提高项目和模块的独立性和可复用性。</p>
+<p>例如，在横向拆分方面我们可以：通过<strong>代码分层来隐藏底层的实现方式与复杂性，使得上下层解耦，提高各层实现方案的可替换性和可维护性</strong>。通过<strong>抽象可复用组件来降低开发成本与周期</strong>。在纵向拆分方面：通过<strong>模块化来提高业务间的独立性</strong>，降低模块内部的修改对外界的影响。</p>
 <h3 id="什么情况下重构"><a href="#什么情况下重构" class="headerlink" title="什么情况下重构"></a>什么情况下重构</h3><p>搞清楚了什么是重构、为什么要重构、重构的级别之后，我们再来看一下什么时候重构？</p>
 <h4 id="代码级-1"><a href="#代码级-1" class="headerlink" title="代码级"></a>代码级</h4><p>在日常开发过程中如果没有code review代码质量的高低是不容易在日常工作中体现的。但当烂代码堆砌到一定程度时，量变引起质变，你会发现“接手这个项目的人频繁离职，开发效率低，招了很多人，天天加班，出活却不多，线上 bug 频发，查找 bug 困难”，这时我们要考虑的就不仅仅是要不要重构的问题了，而是重构成本是否已经超过了重新开发一套新代码的成本的问题。</p>
 <p>目前业界的主流声音是比较反对平时不注重代码质量，堆砌烂代码，实在维护不了了就大刀阔斧地重构、甚至重写的行为。一方面维护代码的人也换了几批，代码的可读性差，重构时很难保证对原业务逻辑理解的准确性。另一方项目太过庞大，公司也不可能停下业务发展的步伐，给我们大量的时间重构。我们需要一边开发新功能一边重构，这样的重构往往很难做到彻底，最后往往又搞出来一个新的半成品，留下一个老的残次品！所以，寄希望于在代码烂到一定程度之后，集中重构解决所有问题是不现实的，我们必须探索一条<strong>可持续、可演进</strong>的方式。要把重构融入我们的开发过程中。</p>
-<h4 id="代码分层架构级-1"><a href="#代码分层架构级-1" class="headerlink" title="代码分层架构级"></a>代码分层架构级</h4><p>代码分层架构级通常是阶段性的。它发生在是工程师在当前的项目规模下对与如何应用当前的分层架构模式会有各自的见解。导致项目分层不清晰，这代表该项目的复杂度已经超出了当前的分层架构模式的能力范围，我们必须针对现阶段及未来的项目的演进方向完善或重新制定一套分层架构方案。</p>
-<h4 id="系统级"><a href="#系统级" class="headerlink" title="系统级"></a>系统级</h4><p>系统级别的重构也是阶段性的，它发生在当前系统性能遇到瓶颈、单个系统开发人员过于庞杂沟通成本过高。出现重复开发，其他人或组已经开发过类似的组件或功能，但是因为依赖关系或功能的些许差异，导致功能或组件无法复用。这代表我们需要新的架构方式来提高我们人员的合作效率、开发效率以及突破现有系统性能的瓶颈。</p>
+<h4 id="系统架构级-1"><a href="#系统架构级-1" class="headerlink" title="系统架构级"></a>系统架构级</h4><p>系统架构级通常是阶段性的。它发生在模块间耦合度过高开发周期长且困难、代码分层不够清晰各层间实现方案的可维护性和可替换性变差、当前系统性能遇到瓶颈、单个系统开发人员过于庞杂沟通成本过高、出现重复开发等。</p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>这篇文章比较偏理论、偏思想教育，主要还是对过去学习到的思想做一个总结，让自己对重构有个正确的、全局性的认知，建立持续重构意识。我觉得，这可能比重构技巧更重要，因为很多技术问题本身就不是单纯靠技术来解决的，更重要的是要有这种认知和意识。当然本文还只是在一个较高的纬度上对重构的一些梳理与总结，要想全面的认识重构，我们还得完善更微观知识，例如重构的对象以及重构的手段。</p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://time.geekbang.org/column/intro/250" target="_blank" rel="noopener">《设计模式之美》</a><br><a href="https://zhuanlan.zhihu.com/p/35680070" target="_blank" rel="noopener">《深入理解MVC》</a></p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://time.geekbang.org/column/intro/250" target="_blank" rel="noopener">《设计模式之美》</a></p>
 
     </div>
 
@@ -274,6 +278,13 @@
 
 
         
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/post/40a442c7.html" rel="next" title="认识重构2:我们究竟要重构对象有哪些？又有哪些重构的手段？">
+      认识重构2:我们究竟要重构对象有哪些？又有哪些重构的手段？ <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
       </footer>
     
   </article>
@@ -332,7 +343,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是重构？"><span class="nav-number">1.</span> <span class="nav-text">什么是重构？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要重构"><span class="nav-number">2.</span> <span class="nav-text">为什么要重构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#保证代码质量"><span class="nav-number">2.1.</span> <span class="nav-text">保证代码质量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#避免过度设计"><span class="nav-number">2.2.</span> <span class="nav-text">避免过度设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#提升工程师技术水平"><span class="nav-number">2.3.</span> <span class="nav-text">提升工程师技术水平</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重构有哪些级别"><span class="nav-number">3.</span> <span class="nav-text">重构有哪些级别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#代码级"><span class="nav-number">3.1.</span> <span class="nav-text">代码级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码分层架构级"><span class="nav-number">3.2.</span> <span class="nav-text">代码分层架构级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#系统架构级"><span class="nav-number">3.3.</span> <span class="nav-text">系统架构级</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么情况下重构"><span class="nav-number">4.</span> <span class="nav-text">什么情况下重构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#代码级-1"><span class="nav-number">4.1.</span> <span class="nav-text">代码级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码分层架构级-1"><span class="nav-number">4.2.</span> <span class="nav-text">代码分层架构级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#系统级"><span class="nav-number">4.3.</span> <span class="nav-text">系统级</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是重构？"><span class="nav-number">1.</span> <span class="nav-text">什么是重构？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要重构"><span class="nav-number">2.</span> <span class="nav-text">为什么要重构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#保证代码质量"><span class="nav-number">2.1.</span> <span class="nav-text">保证代码质量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#避免过度设计"><span class="nav-number">2.2.</span> <span class="nav-text">避免过度设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#提升工程师技术水平"><span class="nav-number">2.3.</span> <span class="nav-text">提升工程师技术水平</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重构有哪些级别"><span class="nav-number">3.</span> <span class="nav-text">重构有哪些级别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#代码级"><span class="nav-number">3.1.</span> <span class="nav-text">代码级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#系统架构级"><span class="nav-number">3.2.</span> <span class="nav-text">系统架构级</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么情况下重构"><span class="nav-number">4.</span> <span class="nav-text">什么情况下重构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#代码级-1"><span class="nav-number">4.1.</span> <span class="nav-text">代码级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#系统架构级-1"><span class="nav-number">4.2.</span> <span class="nav-text">系统架构级</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -346,7 +357,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

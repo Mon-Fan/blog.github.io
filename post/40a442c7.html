@@ -20,28 +20,34 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="MonFan.io">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="重构什么？我在认识重构1中讲到要把重构融入到日常开发过程中，通过不断的迭代和和优化来保证代码的可扩展性、可维护性和可阅读性。下面我们就来讲讲具体重构些什么？ 在系统架构级中主要重构的是系统与系统间的关系、系统内模块与模块间的关系、系统内各层级间的关系、以及类与类之间的关系，主要手段有分层、模块化、解偶、抽象可复用组件等。这类重构的工具就是我们学习过的那些设计思想、原则和模式。这类重构涉及的代码改动">
+<meta property="og:type" content="article">
+<meta property="og:title" content="认识重构2:我们究竟要重构对象有哪些？又有哪些重构的手段？">
+<meta property="og:url" content="http://yoursite.com/post/40a442c7.html">
 <meta property="og:site_name" content="MonFan.io">
+<meta property="og:description" content="重构什么？我在认识重构1中讲到要把重构融入到日常开发过程中，通过不断的迭代和和优化来保证代码的可扩展性、可维护性和可阅读性。下面我们就来讲讲具体重构些什么？ 在系统架构级中主要重构的是系统与系统间的关系、系统内模块与模块间的关系、系统内各层级间的关系、以及类与类之间的关系，主要手段有分层、模块化、解偶、抽象可复用组件等。这类重构的工具就是我们学习过的那些设计思想、原则和模式。这类重构涉及的代码改动">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-02T14:16:22.000Z">
+<meta property="article:modified_time" content="2020-05-03T03:19:54.901Z">
 <meta property="article:author" content="Mon Fan">
+<meta property="article:tag" content="重构">
+<meta property="article:tag" content="设计思想">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/">
+<link rel="canonical" href="http://yoursite.com/post/40a442c7.html">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>MonFan.io</title>
+  <title>认识重构2:我们究竟要重构对象有哪些？又有哪些重构的手段？ | MonFan.io</title>
   
 
 
@@ -178,9 +184,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -196,10 +203,9 @@
       <meta itemprop="name" content="MonFan.io">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/40a442c7.html" class="post-title-link" itemprop="url">认识重构2:我们究竟要重构对象有哪些？又有哪些重构的手段？</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          认识重构2:我们究竟要重构对象有哪些？又有哪些重构的手段？
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -238,7 +244,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="重构什么？"><a href="#重构什么？" class="headerlink" title="重构什么？"></a>重构什么？</h3><p>我在认识重构1中讲到要把重构融入到日常开发过程中，通过不断的迭代和和优化来保证代码的可扩展性、可维护性和可阅读性。下面我们就来讲讲具体重构些什么？</p>
+        <h3 id="重构什么？"><a href="#重构什么？" class="headerlink" title="重构什么？"></a>重构什么？</h3><p>我在认识重构1中讲到要把重构融入到日常开发过程中，通过不断的迭代和和优化来保证代码的可扩展性、可维护性和可阅读性。下面我们就来讲讲具体重构些什么？</p>
 <p>在系统架构级中主要重构的是<strong>系统与系统间的关系、系统内模块与模块间的关系、系统内各层级间的关系、以及类与类之间的关系</strong>，主要手段有分层、模块化、解偶、抽象可复用组件等。这类重构的工具就是我们学习过的那些设计思想、原则和模式。这类重构涉及的代码改动会比较多，影响面会比较大，所以难度也较大，耗时会比较长，引入 bug 的风险也会相对比较大。</p>
 <p>在代码级中主要是对<strong>代码细节的重构，主要是针对类、函数、变量等代码级别的重构</strong>。比如规范命名、规范注释、消除超大类或函数、提取重复代码等等。小型重构更多的是利用我们能后面要讲到的编码规范。这类重构要修改的地方比较集中，比较简单，可操作性较强，耗时会比较短，引入 bug 的风险相对来说也会比较小。你只需要熟练掌握各种编码规范，就可以做到得心应手。</p>
 <h3 id="重构的手段有哪些？"><a href="#重构的手段有哪些？" class="headerlink" title="重构的手段有哪些？"></a>重构的手段有哪些？</h3><h4 id="代码分层"><a href="#代码分层" class="headerlink" title="代码分层"></a>代码分层</h4><p>代码分层架构是利用面向接口编程的设计思想将具有同一职责和特性的类抽象成一组接口，<strong>其目的是隐藏底层的实现方式与复杂性，使得上下层解耦，提高各层实现方案的可替换性和可维护性。</strong></p>
@@ -254,117 +260,41 @@
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>本文主要是疏离一下重构的对象和重构的手段，是对上文在重构理论技巧方面的补充。然而只有这些理论方面的知识还是会感觉对重构无从下手或有所畏惧。在实际使用过程中还是会遇到诸如：重构需要做哪些准备工作？如何降低重构风险并做到小步快跑？如何选择合适的分层架构？分层架构又该如何迭代？如何判断是否需要解偶？怎样的类才算超大类？怎样的命名和注释才算好命名和注释？日常开发过程中又该如何发现代码质量问题？等问题。接下来我希望结合实际应用尝试结合实际代码回答以上这些问题。</p>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://time.geekbang.org/column/intro/250" target="_blank" rel="noopener">《设计模式之美》</a><br><a href="https://zhuanlan.zhihu.com/p/35680070" target="_blank" rel="noopener">《深入理解MVC》</a></p>
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/%E9%87%8D%E6%9E%84/" rel="tag"># 重构</a>
+              <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/" rel="tag"># 设计思想</a>
+          </div>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/post/664e5ae8.html">
+        
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Mon Fan">
-      <meta itemprop="description" content="">
-    </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MonFan.io">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/664e5ae8.html" class="post-title-link" itemprop="url">认识重构1：什么是重构？有哪些级别？重构的目的是什么？在什么情况下重构？</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-04-30 18:12:57" itemprop="dateCreated datePublished" datetime="2020-04-30T18:12:57+08:00">2020-04-30</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-03 11:19:51" itemprop="dateModified" datetime="2020-05-03T11:19:51+08:00">2020-05-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/" itemprop="url" rel="index"><span itemprop="name">编程思想</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="什么是重构？"><a href="#什么是重构？" class="headerlink" title="什么是重构？"></a>什么是重构？</h3><p>软件设计大师 Martin Fowler 是这样定义重构的：“重构是一种对软件内部结构的改善，目的是在不改变软件的可见行为的情况下，使其更易理解，修改成本更低。”</p>
-<h3 id="为什么要重构"><a href="#为什么要重构" class="headerlink" title="为什么要重构"></a>为什么要重构</h3><h4 id="保证代码质量"><a href="#保证代码质量" class="headerlink" title="保证代码质量"></a>保证代码质量</h4><p>在日常工作中，随着项目的演进，代码不停的堆砌，如果没有人为代码的质量负责，代码必定是朝着越来越混乱的方向演进的。混乱到一定程度之后，量变引起质变，导致项目bug频发，解决bug耗时且困难。代码可读性差，想要添加一个新功能时，开发人员需要花更多的时间去思考，去考虑如何把新功能塞进现有的代码库中，避免因改一个地方而出现牵一发而动全身的尴尬境界。</p>
-<h4 id="避免过度设计"><a href="#避免过度设计" class="headerlink" title="避免过度设计"></a>避免过度设计</h4><p>优秀的代码或架构不是一开始就能完全设计好的，就像优秀的公司和产品也都是迭代出来的。我们无法 100% 遇见未来的需求，也没有足够的精力、时间、资源为遥远的未来买单，所以，随着系统的演进，重构代码也是不可避免的。<br>在我们维护代码的过程中，真正遇到问题的时候，再对代码进行重构，能有效避免前期投入太多时间做过度的设计，做到有的放矢。</p>
-<h4 id="提升工程师技术水平"><a href="#提升工程师技术水平" class="headerlink" title="提升工程师技术水平"></a>提升工程师技术水平</h4><p>重构也是对我们学习的经典的设计思想、设计原则、设计模式、编程规范的一种应用，能够锻炼我们熟练使用这些理论知识的能力。可见重构能力也是衡量一个工程师代码能力的有效手段。</p>
-<h3 id="重构有哪些级别"><a href="#重构有哪些级别" class="headerlink" title="重构有哪些级别"></a>重构有哪些级别</h3><h4 id="代码级"><a href="#代码级" class="headerlink" title="代码级"></a>代码级</h4><p>在日常开发过程中，或因公司业务发展迅速，公司为了项目能早点上线压缩开发周期。开发人员在改bug或功能优化时，经常在没有完全理解架构设计的情况下，为了赶进度就使用临时方案，今天张三改一下明天李四改一下，于是代码逐渐失去了自己的结构。久而久之，程序员越来越难通过阅读代码理解原来的设计，于是代码就越愈发腐败得更快，最终沦为一个谁也不敢动的巨坑。</p>
-<p>另一方面需求在演进，原有的设计模式可能已无法满足现今的业务需求，这时我们也需要通过重构来调整代码的结构保证代码的可扩展性。</p>
-<p>最后，除了这些外部因素，开发人员本身对设计模式、设计思想的理解与应用场景出现偏差也会使得代码可维护性不高。</p>
-<p>所以，<strong>代码级的重构就是使用设计模式、封装继承、优化拆解代码，使得代码的结构更清晰，维护成本更低，运行效率更高</strong>。</p>
-<h4 id="系统架构级"><a href="#系统架构级" class="headerlink" title="系统架构级"></a>系统架构级</h4><p>随着项目的演进，系统功能变的丰富，业务逻辑也越来越复杂。开发人员熟悉和掌握整个项目的成本也在不断的增加。我们需要一种架构能帮我们化繁为简，使我们的代码不会因为一点小的改动导致牵一发而动全身。让我们的开发人员可以分组配合甚至单兵作战，每个人或小组只需要熟悉自己负责的那一块就能完成开发工作，而不需要熟悉整个项目从而让新人能够快速参与开发工作。</p>
-<p>所以，系统级架构主要是通过<strong>对项目进行横向或纵向的拆分来降低项目间或模块间的耦合度</strong>，提高项目和模块的独立性和可复用性。</p>
-<p>例如，在横向拆分方面我们可以：通过<strong>代码分层来隐藏底层的实现方式与复杂性，使得上下层解耦，提高各层实现方案的可替换性和可维护性</strong>。通过<strong>抽象可复用组件来降低开发成本与周期</strong>。在纵向拆分方面：通过<strong>模块化来提高业务间的独立性</strong>，降低模块内部的修改对外界的影响。</p>
-<h3 id="什么情况下重构"><a href="#什么情况下重构" class="headerlink" title="什么情况下重构"></a>什么情况下重构</h3><p>搞清楚了什么是重构、为什么要重构、重构的级别之后，我们再来看一下什么时候重构？</p>
-<h4 id="代码级-1"><a href="#代码级-1" class="headerlink" title="代码级"></a>代码级</h4><p>在日常开发过程中如果没有code review代码质量的高低是不容易在日常工作中体现的。但当烂代码堆砌到一定程度时，量变引起质变，你会发现“接手这个项目的人频繁离职，开发效率低，招了很多人，天天加班，出活却不多，线上 bug 频发，查找 bug 困难”，这时我们要考虑的就不仅仅是要不要重构的问题了，而是重构成本是否已经超过了重新开发一套新代码的成本的问题。</p>
-<p>目前业界的主流声音是比较反对平时不注重代码质量，堆砌烂代码，实在维护不了了就大刀阔斧地重构、甚至重写的行为。一方面维护代码的人也换了几批，代码的可读性差，重构时很难保证对原业务逻辑理解的准确性。另一方项目太过庞大，公司也不可能停下业务发展的步伐，给我们大量的时间重构。我们需要一边开发新功能一边重构，这样的重构往往很难做到彻底，最后往往又搞出来一个新的半成品，留下一个老的残次品！所以，寄希望于在代码烂到一定程度之后，集中重构解决所有问题是不现实的，我们必须探索一条<strong>可持续、可演进</strong>的方式。要把重构融入我们的开发过程中。</p>
-<h4 id="系统架构级-1"><a href="#系统架构级-1" class="headerlink" title="系统架构级"></a>系统架构级</h4><p>系统架构级通常是阶段性的。它发生在模块间耦合度过高开发周期长且困难、代码分层不够清晰各层间实现方案的可维护性和可替换性变差、当前系统性能遇到瓶颈、单个系统开发人员过于庞杂沟通成本过高、出现重复开发等。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>这篇文章比较偏理论、偏思想教育，主要还是对过去学习到的思想做一个总结，让自己对重构有个正确的、全局性的认知，建立持续重构意识。我觉得，这可能比重构技巧更重要，因为很多技术问题本身就不是单纯靠技术来解决的，更重要的是要有这种认知和意识。当然本文还只是在一个较高的纬度上对重构的一些梳理与总结，要想全面的认识重构，我们还得完善更微观知识，例如重构的对象以及重构的手段。</p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://time.geekbang.org/column/intro/250" target="_blank" rel="noopener">《设计模式之美》</a></p>
-
-      
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/post/664e5ae8.html" rel="prev" title="认识重构1：什么是重构？有哪些级别？重构的目的是什么？在什么情况下重构？">
+      <i class="fa fa-chevron-left"></i> 认识重构1：什么是重构？有哪些级别？重构的目的是什么？在什么情况下重构？
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
-  
-
-
   
 
 
 
           </div>
           
+    <div class="comments" id="gitalk-container"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -411,6 +341,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#重构什么？"><span class="nav-number">1.</span> <span class="nav-text">重构什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重构的手段有哪些？"><span class="nav-number">2.</span> <span class="nav-text">重构的手段有哪些？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#代码分层"><span class="nav-number">2.1.</span> <span class="nav-text">代码分层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模块化与解偶"><span class="nav-number">2.2.</span> <span class="nav-text">模块化与解偶</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#抽象可复用组件和提取重复代码"><span class="nav-number">2.3.</span> <span class="nav-text">抽象可复用组件和提取重复代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#消除超大类或函数"><span class="nav-number">2.4.</span> <span class="nav-text">消除超大类或函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#规范命名和注释"><span class="nav-number">2.5.</span> <span class="nav-text">规范命名和注释</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -537,6 +468,25 @@
 
   
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'ebcba7ce71a0b7fb98bf',
+      clientSecret: 'abd5db7354ac3247431ea33b7485f47edb0a95e6',
+      repo        : 'mon-fan.github.io',
+      owner       : 'Mon-Fan',
+      admin       : ['Mon-Fan'],
+      id          : '04286da1a9a070a213aad4812c6711ed',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
 
 </body>
 </html>
