@@ -79,7 +79,7 @@ MVC指的Model、View、Controller即模型、视图、控制器，MVC 三层开
 
 ### 如何维护失血模型中MVC架构下的代码质量
 
-在讨论如何维护代码质量之前我们先明确一下什么是代码质量。关于代码质量，通常情况下包含但不限于代码的可维护性、可读性、可复用性、可测试性。实际上代码质量的高低是主观印象，业内还有很多词语用来评价一段代码质量的好坏，不同的人对同一段代码的评价也有可能是不一样的。所以下面的讨论仅是本人对MVC架构下代码质量的一些思考，个人水平有限，如果你有不同意见还请留言探讨。
+在讨论如何维护代码质量之前我们先明确一下什么是代码质量。关于代码质量，通常情况下包含但不限于代码的可维护性、可读性、可复用性、可测试性。实际上代码质量的高低是主观印象，业内还有很多词语用来评价一段代码质量的好坏，不同的人对同一段代码的评价也有可能是不一样的。所以下面的讨论仅是本人对MVC架构下代码质量的一些思考。
 
 #### Repository 层
 
@@ -243,7 +243,7 @@ public class OrderServiceImpl implements OrderService {
   private ShopRepository shopReopsitory;
   
   public OrderDTO buyerListOrder(Long buyerId){
-  	List<Order> orders = orderRepository.listByBuyerId(buyerId);
+    List<Order> orders = orderRepository.listByBuyerId(buyerId);
     List<Long> orderIds = getOrderIds(orders);
     List<OrderItem> items = orderItemRepository.listByOrderIds(orderIds);
     //获取卖家信息
@@ -266,7 +266,7 @@ public class OrderServiceImpl implements OrderService {
 } 
 ```
 
-但是如果Shop表中Logo信息的存储方式由原来的绝对路径改为了相对路径，这时数据库里的数据既有在修改之前保存的绝对路径，又有修改之后保存的相对路径。但要求返还给前端的通用为绝对路径。这时如果我们之前引入的是ShopRepository会导致在OrderService中需要处理logo路径相关的业务逻辑。
+但是如果Shop表中Logo信息的存储方式由原来的绝对路径改为了相对路径，这时数据库里的数据既有在修改之前保存的绝对路径，又有修改之后保存的相对路径。但要求返还给前端的统一为绝对路径。这时如果我们之前引入的是ShopRepository会导致在OrderService中需要处理logo路径相关的业务逻辑。
 
 事实上，对于相关业务模块的依赖，引入Service而非Repository 能够有效的帮我们屏蔽其业务内部的变动而对当前模块造成的影响。下面是引入ShopService的示例代码。
 
@@ -283,7 +283,7 @@ public class OrderServiceImpl implements OrderService {
   private ShopService shopService;
   
   public OrderDTO buyerListOrder(Long buyerId){
-  	List<Order> orders = orderRepository.listByBuyerId(buyerId);
+    List<Order> orders = orderRepository.listByBuyerId(buyerId);
     List<Long> orderIds = getOrderIds(orders);
     List<OrderItem> items = orderItemRepository.listByOrderIds(orderIds);
     //获取卖家信息
@@ -387,7 +387,7 @@ public interface RegisterService{
 }
 ```
 
-在上面的代码中，service未与实际业务语言对应起来前我们通常会把它与表结构对应起来。UserService既有对用户的增删改查功能，也有登陆注册相关功能，在简单的业务中我们的需求可能也就是对表的增删改查，这么写并没有什么问题。但是当我们的业务并不仅仅是增删改查后这么写就会使得我们这个类越来庞杂。你很难定义这个类究竟是这做什么？似乎与User表相关的它都管。在上面的代码中我们对不同等应用场景和不同的使用者来对UserService进行拆分，使其职责更单一，代码结构更清晰，更利于维护。
+在上面的代码中，service未与实际业务语言对应起来前我们通常会把它与表结构对应起来。在简单的业务中我们的需求可能也就是对表的增删改查，这么写并没有什么问题。但是当UserService既有对用户的增删改查功能，也有登陆注册相关功能时，你很难定义这个类究竟是这做什么？似乎与User表相关的它都管。在Service与实际业务语言对应后我们对不同等应用场景和不同的使用者把UserService拆分为UserService、LoginUserService、LoginService、RegisterService，使其职责更单一，代码结构更清晰，更利于维护。
 
 #### Controller层
 
@@ -396,6 +396,12 @@ Controller层作为控制器用来调度View层和Model层，将用户界面和�
 比方说，有一个View会提交数据给Model进行处理以实现具体的行为，View通常不会直接提交数据给Model，它会先把数据提交给Controller，然后Controller再将数据转发给Model。假如此时程序业务逻辑的处理方式有变化，那么只需要在Controller中将原来的Model换成新实现的Model就可以了，**控制器的作用就是这么简单， 用来将不同的View和不同的Model组织在一起，顺便替双方传递消息，仅此而已。**
 
 所以在Controller我们一般只是对入参和用户权限等与业务逻辑无关的事物进行校验（好的权限和参数校验框架也可以在切面层校验，减少controller的代码量）。
+
+
+
+### 总结
+
+本文主要是描述了失血模型中MVC架构中的应用，以及如何在失血模型中MVC架构中维护代码的质量，由于每个人对代码质量的评断不尽相同，所以上面的讨论仅是本人对MVC架构下代码质量的一些思考，个人水平有限，如果你有不同意见还请留言探讨。
 
 ### 参考
 
